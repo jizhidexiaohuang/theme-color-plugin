@@ -41,7 +41,10 @@ const updateTheme = (newPrimaryColor, hasTip = false) => {
       newPrimaryColor = localThemeColor;
     }
   }
-  const hideMessage = message.loading("正在切换主题！", 0);
+  let hideMessage = null;
+  if (hasTip) {
+    hideMessage = message.loading("正在切换主题！", 0);
+  }
   window.localStorage.setItem("themeColor", newPrimaryColor);
   changeColor(newPrimaryColor).finally((t) => {
     setTimeout(() => {
