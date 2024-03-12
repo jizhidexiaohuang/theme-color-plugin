@@ -31,7 +31,7 @@ const changeColor = (newColor) => {
   return client.changer.changeColor(options, Promise);
 };
 
-const updateTheme = (newPrimaryColor) => {
+const updateTheme = (newPrimaryColor, hasTip = false) => {
   const localThemeColor = window.localStorage.getItem("themeColor");
   if (!newPrimaryColor) {
     if (!localThemeColor) {
@@ -45,7 +45,7 @@ const updateTheme = (newPrimaryColor) => {
   window.localStorage.setItem("themeColor", newPrimaryColor);
   changeColor(newPrimaryColor).finally((t) => {
     setTimeout(() => {
-      hideMessage();
+      hasTip ? hideMessage() : "";
     });
   });
 };
